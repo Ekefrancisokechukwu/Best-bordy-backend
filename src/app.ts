@@ -5,6 +5,9 @@ import { config } from "dotenv";
 import { notFoundMiddleware } from "./middleware/notFoundMiddleware";
 import { errorMiddleware } from "./middleware/errorMiddleware";
 
+// Routes
+import authRouter from "./routes/auth";
+
 // Load environment variables
 config();
 
@@ -15,6 +18,8 @@ app.use(helmet()); // Security headers
 app.use(cors({ origin: "*" })); // Enable CORS
 app.use(express.json()); // Parse JSON bodies
 app.use(express.urlencoded({ extended: true })); // Parse URL-encoded bodies
+
+app.use("/api/v1/auth", authRouter);
 
 // Routes
 app.get("/", (req, res) => {
