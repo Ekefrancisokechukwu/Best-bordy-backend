@@ -4,6 +4,7 @@ import helmet from "helmet";
 import { config } from "dotenv";
 import { notFoundMiddleware } from "./middleware/notFoundMiddleware";
 import { errorMiddleware } from "./middleware/errorMiddleware";
+import "express-async-errors";
 
 // Routes
 import authRouter from "./routes/auth";
