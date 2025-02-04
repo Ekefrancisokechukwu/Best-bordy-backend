@@ -9,6 +9,7 @@ import cookieParser from "cookie-parser";
 
 // Routes
 import authRouter from "./routes/auth";
+import usersRouter from "./routes/users";
 
 // Load environment variables
 config();
@@ -23,6 +24,7 @@ app.use(express.urlencoded({ extended: true })); // Parse URL-encoded bodies
 app.use(cookieParser(process.env.JWT_SECRET));
 
 app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/users", usersRouter);
 
 // Routes
 app.get("/", (req, res) => {

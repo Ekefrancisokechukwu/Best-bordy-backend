@@ -1,10 +1,10 @@
 import jwt, { JwtPayload } from "jsonwebtoken";
 import { Response } from "express";
 
-export interface ITokenUser {
+export interface User {
   email: string;
   username: string;
-  id: string | unknown;
+  id: string | number | unknown;
 }
 
 export interface CustomJwtPayload extends JwtPayload {
@@ -13,7 +13,7 @@ export interface CustomJwtPayload extends JwtPayload {
   id: string;
 }
 
-const createToken = (payload: ITokenUser) => {
+const createToken = (payload: User) => {
   const secretKey = process.env.JWT_SECRET as string;
 
   const token = jwt.sign(payload, secretKey, { expiresIn: "1d" });
@@ -28,7 +28,7 @@ const isTokenvalid = (token: string) => {
   }
 };
 
-const attachcookiesToResponse = (res: Response, tokenUser: ITokenUser) => {
+const attachcookiesToResponse = (res: Response, tokenUser: User) => {
   const token = createToken(tokenUser);
 
   const oneDay = 1000 * 60 * 60 * 24;

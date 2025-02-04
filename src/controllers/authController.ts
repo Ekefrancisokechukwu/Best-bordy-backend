@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 import User from "../model/User";
 import { attachcookiesToResponse } from "../../utils/jwt";
 
-export async function signup(req: Request, res: Response) {
+export async function signup(req: Request, res: Response): Promise<void> {
   const { email, password, username } = req.body;
 
   if (!email || !password || !username) {
@@ -21,9 +21,10 @@ export async function signup(req: Request, res: Response) {
   res.status(201).json({ message: "Register sucessfully", user });
 }
 
+// TODO:send a comfirm account email
 async function sendAccountCofirmation() {}
 
-export async function login(req: Request, res: Response) {
+export async function login(req: Request, res: Response): Promise<void> {
   const { email, password } = req.body;
 
   if (!email || !password) {
